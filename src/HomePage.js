@@ -20,21 +20,27 @@ class HomePage extends Component {
         console.log(this.state.books)
         return (
             <div>
-                <h1>MyReads</h1>
-                <BookShelf 
-                    shelf='currentlyReading'
-                    books={this.state.books}
-                />
-                <h1>Want to Read</h1>
-                <BookShelf 
-                    shelf='wantToRead'
-                    books={this.state.books}
-                />
-                <h1>Read</h1>
-                <BookShelf 
-                    shelf='read'
-                    books={this.state.books}
-                />
+                <div className='list-books-title'>
+                    <h1>MyReads</h1>
+                </div>
+                <div className='list-books-content'>
+                    <BookShelf
+                        title='Currently Reading' 
+                        shelf='currentlyReading'
+                        books={this.state.books}
+                    />
+                    <BookShelf 
+                        title='Want to Read' 
+                        shelf='wantToRead'
+                        books={this.state.books}
+                    />
+                    <BookShelf 
+                        title='Read'
+                        shelf='read'
+                        books={this.state.books}
+                    />
+                </div>  
+                <button className='open-search'>Search</button>   
             </div>
         )
     }
