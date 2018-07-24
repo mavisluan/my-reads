@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import HomePage from './HomePage';
 import * as BooksAPI from './BooksAPI'
+import SearchPage from './SearchPage';
 
 class App extends Component {
   state = {
@@ -33,13 +34,16 @@ updateShelf = (book, shelf) => {
 
     return (
       <div className="App">
-        <HomePage 
-          books={this.state.books}
-          updateShelf={this.updateShelf}
-        />
+        <SearchPage books={this.state.books}/>
       </div>
     );
   }
 }
 
 export default App;
+
+
+        // <HomePage 
+        //   books={this.state.books}
+        //   updateShelf={this.updateShelf}
+        // />
