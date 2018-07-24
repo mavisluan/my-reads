@@ -1,34 +1,9 @@
 import React, { Component } from 'react'
 import BookShelf from './BookShelf'
-import * as BooksAPI from './BooksAPI'
 
 class HomePage extends Component {
-    state = {
-        books: [],
-        shelf: ''
-    }
-
-    componentDidMount () {
-        BooksAPI.getAll().then((books) => (
-            this.setState({
-                books: books
-            })
-        ))    
-    }
-
-    updateShelf = (book, shelf) => {
-        BooksAPI.update(book, shelf).then((shelf) => {
-            book.shelf = shelf
-            BooksAPI.getAll().then((books) => (
-                this.setState({
-                    books: books
-                })
-            )) 
-        })
-    }
-
     render () {
-        console.log(this.state.books)
+        const { books, updateShelf } = this.props
         return (
             <div>
                 <div className='list-books-title'>
@@ -38,20 +13,20 @@ class HomePage extends Component {
                     <BookShelf
                         title='Currently Reading' 
                         shelf='currentlyReading'
-                        books={this.state.books}
-                        onMoveShelf={this.updateShelf}
+                        books={books}
+                        onMoveShelf={updateShelf}
                     />
                     <BookShelf 
                         title='Want to Read' 
                         shelf='wantToRead'
-                        books={this.state.books}
-                        onMoveShelf={this.updateShelf}
+                        books={books}
+                        onMoveShelf={updateShelf}
                     />
                     <BookShelf 
                         title='Read'
                         shelf='read'
-                        books={this.state.books}
-                        onMoveShelf={this.updateShelf}
+                        books={books}
+                        onMoveShelf={updateShelf}
                     />
                 </div>  
                 <button className='open-search'>Search</button>   
