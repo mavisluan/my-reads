@@ -20,12 +20,16 @@ class BookShelf extends Component {
                                         alt={`${book.imageLinks.smallThumbnail}`}
                                         />
                                         <div className='book-shelf-changer'>
-                                            <select >
-                                                <option>Move to ...</option>
-                                                <option>Currently Reading</option>
-                                                <option>Want to Read</option>
-                                                <option>Read</option>
-                                                <option>None</option>
+                                            <select 
+                                                name='shelfSelection' 
+                                                value={book.shelf} 
+                                                onChange={(e) => this.props.onMoveShelf(book, e.target.value)}
+                                            >
+                                                <option value=''>Move to ...</option>
+                                                <option value='currentlyReading'>Currently Reading</option>
+                                                <option value='wantToRead'>Want to Read</option>
+                                                <option value='read'>Read</option>
+                                                <option value='none'>None</option>
                                             </select>
                                         </div> 
                                     </div>

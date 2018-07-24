@@ -16,6 +16,17 @@ class HomePage extends Component {
         ))    
     }
 
+    updateShelf = (book, shelf) => {
+        BooksAPI.update(book, shelf).then((shelf) => {
+            book.shelf = shelf
+            BooksAPI.getAll().then((books) => (
+                this.setState({
+                    books: books
+                })
+            )) 
+        })
+    }
+
     render () {
         console.log(this.state.books)
         return (
@@ -28,16 +39,19 @@ class HomePage extends Component {
                         title='Currently Reading' 
                         shelf='currentlyReading'
                         books={this.state.books}
+                        onMoveShelf={this.updateShelf}
                     />
                     <BookShelf 
                         title='Want to Read' 
                         shelf='wantToRead'
                         books={this.state.books}
+                        onMoveShelf={this.updateShelf}
                     />
                     <BookShelf 
                         title='Read'
                         shelf='read'
                         books={this.state.books}
+                        onMoveShelf={this.updateShelf}
                     />
                 </div>  
                 <button className='open-search'>Search</button>   
