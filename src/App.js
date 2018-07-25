@@ -66,11 +66,14 @@ handleSearchResult = (query) => {
               updateShelf={this.updateShelf}
             />
           )}/>
-          <Route path='/search' render={() => (
+          <Route path='/search' render={({history}) => (
             <SearchPage 
               books={searchResult}
               onSearch={this.handleSearchResult}
-              updateShelf={this.updateShelf}
+              updateShelf={(book, shelf) => {
+                this.updateShelf(book, shelf)
+                history.push('/')
+              }}
             />
           )}/>
         </Switch>
