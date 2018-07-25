@@ -3,7 +3,6 @@ import Book from './Book'
 import { Link } from 'react-router-dom'
 
 class SearchPage extends Component {
- 
     state = {
         query: ''
     }
@@ -12,17 +11,21 @@ class SearchPage extends Component {
         this.setState({ query: query.trim()})
         if (query) {
             this.props.onSearch(query)
-        } 
+        }
+         
     }
     
     render () {
+        const { query } = this.state
+        const { books, updateShelf } = this.props
+        
         return (
             <div>
                 <div className='search-books-bar '>
                     <Link className='close-search' to='/'>Home</Link>
                     <input 
                         name='search'
-                        value={this.state.query}
+                        value={query}
                         onChange={
                             (e) => this.updateQuery(e.target.value)
                         }
@@ -30,11 +33,11 @@ class SearchPage extends Component {
                 </div>
                 <div className='search-books-results'>
                     <Book 
-                        books={this.props.books}
-                        onMoveShelf={this.props.updateShelf}
+                        books={books}
+                        onMoveShelf={updateShelf}
                     />
                 </div>
-                <p>Query:{this.state.query}</p>
+                <p>Query:{query}</p>
             </div>
         )
     }
