@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Book from './Book'
+import { Link } from 'react-router-dom'
 
 class SearchPage extends Component {
  
@@ -18,7 +19,7 @@ class SearchPage extends Component {
         return (
             <div>
                 <div className='search-books-bar '>
-                    <div className='close-search'></div>
+                    <Link className='close-search' to='/'>Home</Link>
                     <input 
                         name='search'
                         value={this.state.query}

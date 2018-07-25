@@ -4,7 +4,7 @@ import HomePage from './HomePage';
 import * as BooksAPI from './BooksAPI'
 import SearchPage from './SearchPage';
 import PropTypes from 'prop-types'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 class App extends Component {
   static propTypes = {
@@ -58,26 +58,22 @@ handleSearchResult = (query) => {
     console.log(this.state.searchResult)
     return (
       <div className="App">
-        <Route extact path='/' render={() => (
-           <HomePage 
-           books={this.state.books}
-           updateShelf={this.updateShelf}
-          />
-        )}/>
-
-        <Route path='/search' render={() => (
-          <SearchPage 
-            books={this.state.searchResult}
-            onSearch={this.handleSearchResult}
-            updateShelf={this.updateShelf}
-          />
-        )}/>
+          <Route exact path='/' render={() => (
+            <HomePage 
+              books={this.state.books}
+              updateShelf={this.updateShelf}
+            />
+          )}/>
+          <Route path='/search' render={() => (
+            <SearchPage 
+              books={this.state.searchResult}
+              onSearch={this.handleSearchResult}
+              updateShelf={this.updateShelf}
+            />
+          )}/>
       </div>
     );
   }
 }
 
 export default App;
-
-
-       
