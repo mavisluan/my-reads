@@ -31,10 +31,20 @@ updateShelf = (book, shelf) => {
 }
 
 handleSearchResult = (query) => {
-  BooksAPI.search(query).then(books => {
+  const {books} = this.state
+  BooksAPI.search(query).then(data => {
     console.log('no error')
+    let result=[]
+    data.forEach(book => {
+      books.forEach(b => {
+        if (book.id === b.id) {
+          book = b 
+        }
+      })
+      result.push(book)
+    })
     this.setState({
-      searchResult: books
+      searchResult: result
     })
   }).catch((e) => {
       console.log('error', e)
@@ -46,7 +56,6 @@ handleSearchResult = (query) => {
 
   render() {
     const { books, searchResult } = this.state
-    console.log(books)
     console.log(searchResult)
     return (
       <div className="App">
