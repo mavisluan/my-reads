@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import BookShelf from './BookShelf'
+import { Link } from 'react-router-dom'
 
 class HomePage extends Component {
     render () {
@@ -29,7 +30,9 @@ class HomePage extends Component {
                         onMoveShelf={updateShelf}
                     />
                 </div>  
-                <button className='open-search'>Search</button>   
+                <div className='open-search'>
+                    <Link to='/search'>Search</Link> 
+                </div>             
             </div>
         )
     }

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Book = (props) => (
     <div>
-         <ul className='books-grid'>        
+        <ul className='books-grid'> 
             {props.books.map((book) => (
                 <li key={book.id}>
                     <div className='book'>
@@ -33,7 +33,7 @@ const Book = (props) => (
                     </div>                  
                 </li>
             ))}
-        </ul>
+        </ul>  
     </div>
 )
 

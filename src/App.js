@@ -3,11 +3,21 @@ import './App.css';
 import HomePage from './HomePage';
 import * as BooksAPI from './BooksAPI'
 import SearchPage from './SearchPage';
+import PropTypes from 'prop-types'
+import { Route } from 'react-router-dom'
 
 class App extends Component {
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    searchResult: PropTypes.array.isRequired,
+    updateShelf: PropTypes.func.isRequired,
+    handleSearchResult: PropTypes.func.isRequired
+  }
+
+
   state = {
     books: [],
-    shelf: ''
+    searchResult: []
 }
 
 componentDidMount () {
@@ -29,12 +39,39 @@ updateShelf = (book, shelf) => {
     })
 }
 
+handleSearchResult = (query) => {
+  BooksAPI.search(query).then(books => {
+    console.log('no error')
+    this.setState({
+      searchResult: books
+    })
+  }).catch((e) => {
+      console.log('error', e)
+      this.setState({ 
+        searchResult: []
+      })
+  })
+}
+
   render() {
     console.log(this.state.books)
-
+    console.log(this.state.searchResult)
     return (
       <div className="App">
-        <SearchPage books={this.state.books}/>
+        <Route extact path='/' render={() => (
+           <HomePage 
+           books={this.state.books}
+           updateShelf={this.updateShelf}
+          />
+        )}/>
+
+        <Route path='/search' render={() => (
+          <SearchPage 
+            books={this.state.searchResult}
+            onSearch={this.handleSearchResult}
+            updateShelf={this.updateShelf}
+          />
+        )}/>
       </div>
     );
   }
@@ -43,7 +80,4 @@ updateShelf = (book, shelf) => {
 export default App;
 
 
-        // <HomePage 
-        //   books={this.state.books}
-        //   updateShelf={this.updateShelf}
-        // />
+       
