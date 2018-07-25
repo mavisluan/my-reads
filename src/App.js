@@ -58,6 +58,7 @@ handleSearchResult = (query) => {
     console.log(this.state.searchResult)
     return (
       <div className="App">
+        <Switch>
           <Route exact path='/' render={() => (
             <HomePage 
               books={this.state.books}
@@ -71,6 +72,7 @@ handleSearchResult = (query) => {
               updateShelf={this.updateShelf}
             />
           )}/>
+        </Switch>
       </div>
     );
   }
