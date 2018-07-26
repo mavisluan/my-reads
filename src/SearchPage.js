@@ -65,6 +65,7 @@ class SearchPage extends Component {
                     <input 
                         name='search'
                         value={query}
+                        placeholder={`Search here`}
                         onChange={
                             (e) => this.updateQuery(e.target.value)
                         }
