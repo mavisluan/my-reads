@@ -22,7 +22,7 @@ const Book = (props) => (
                                     value={book.shelf === undefined ? 'none': book.shelf}                      
                                     onChange={(e) => props.onMoveShelf(book, e.target.value)}
                                 >
-                                    <option value=''>Move to ...</option>
+                                    <option value='' disabled>Move to ...</option>
                                     <option value='currentlyReading'>Currently Reading</option>
                                     <option value='wantToRead'>Want to Read</option>
                                     <option value='read'>Read</option>
