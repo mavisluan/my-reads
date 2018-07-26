@@ -11,7 +11,7 @@ class SearchPage extends Component {
     }
     
     componentDidUpdate(prevProps) {
-        if (this.props.shelfBooks !== prevProps.shelfBooks) {
+        if (this.props.books !== prevProps.books) {
             this.updateSearchResult(this.state.searchResult)
         }
     }
@@ -25,10 +25,10 @@ class SearchPage extends Component {
     }
 
     updateSearchResult = (data) => {
-        const {shelfBooks} = this.props
+        const {books} = this.props
         let result=[]
           data.forEach(book => {
-            shelfBooks.forEach(b => {
+            books.forEach(b => {
               if (book.id === b.id) {
                 book = b 
               }
@@ -56,7 +56,7 @@ class SearchPage extends Component {
 
     render () {
         const { query, searchResult, errorMessage } = this.state
-        const { updateShelf, shelfBooks } = this.props
+        const { updateShelf } = this.props
         console.log(searchResult)
         return (
             <div>
@@ -75,10 +75,8 @@ class SearchPage extends Component {
                     {query.length !== 0 && searchResult.length === 0 &&
                     (<span>{errorMessage}</span>)}                  
                     <Book 
-                        shelfBooks={shelfBooks}
                         books={query ? searchResult : []}
                         onMoveShelf={updateShelf}
-                        query={query}
                     />
                 </div>
             </div>
