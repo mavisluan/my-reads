@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Book = (props) => (
-    <div>
+     <div>
         <ul className='books-grid'> 
             {props.books.map((book) => (
                 <li key={book.id}>

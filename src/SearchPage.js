@@ -9,10 +9,11 @@ class SearchPage extends Component {
     
     updateQuery = (query) => {
         this.setState({ query: query})
+
         if (query) {
             this.props.onSearch(query)
         }
-         
+       
     }
     
     render () {
@@ -33,8 +34,9 @@ class SearchPage extends Component {
                 </div>
                 <div className='search-books-results'>
                     <Book 
-                        books={books}
+                        books={query ? books : []}
                         onMoveShelf={updateShelf}
+                        query={query}
                     />
                 </div>
                 <p>Query:{query}</p>

@@ -21,20 +21,18 @@ componentDidMount () {
 
 updateShelf = (book, shelf) => {
     BooksAPI.update(book, shelf).then((shelf) => {
-        book.shelf = shelf
+        book.shelf = shelf       
         BooksAPI.getAll().then((books) => (
             this.setState({
-                books: books
+                books: books 
             })
-        )) 
+        ))
     })
 }
 
-handleSearchResult = (query) => {
+updateSearchResult = (data) => {
   const {books} = this.state
-  BooksAPI.search(query).then(data => {
-    console.log('no error')
-    let result=[]
+  let result=[]
     data.forEach(book => {
       books.forEach(b => {
         if (book.id === b.id) {
@@ -46,6 +44,12 @@ handleSearchResult = (query) => {
     this.setState({
       searchResult: result
     })
+}
+
+handleSearchResult = (query) => {
+  BooksAPI.search(query).then(data => {
+    console.log('no error')
+    this.updateSearchResult(data)
   }).catch((e) => {
       console.log('error', e)
       this.setState({ 
@@ -56,6 +60,7 @@ handleSearchResult = (query) => {
 
   render() {
     const { books, searchResult } = this.state
+    console.log(books)
     console.log(searchResult)
     return (
       <div className="App">
@@ -66,13 +71,12 @@ handleSearchResult = (query) => {
               updateShelf={this.updateShelf}
             />
           )}/>
-          <Route path='/search' render={({history}) => (
+          <Route path='/search' render={() => (
             <SearchPage 
               books={searchResult}
               onSearch={this.handleSearchResult}
               updateShelf={(book, shelf) => {
                 this.updateShelf(book, shelf)
-                history.push('/')
               }}
             />
           )}/>
