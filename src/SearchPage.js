@@ -6,7 +6,8 @@ import * as BooksAPI from './BooksAPI'
 class SearchPage extends Component {
     state = {
         query: '',
-        searchResult: []
+        searchResult: [],
+        errorMessage: ''
     }
     
     componentDidUpdate(prevProps) {
@@ -16,10 +17,11 @@ class SearchPage extends Component {
     }
 
     updateQuery = (query) => {
+        this.setState({ query: query})   
+
         if (query) {
             this.handleSearchResult(query)
         }
-        this.setState({ query: query})   
     }
 
     updateSearchResult = (data) => {
@@ -45,15 +47,15 @@ class SearchPage extends Component {
         }).catch((e) => {
             console.log('error', e)
             this.setState({ 
-              searchResult: []
+              searchResult: [],
+              errorMessage: 'No result'
             })
         })
       }
     
-      
 
     render () {
-        const { query, searchResult } = this.state
+        const { query, searchResult, errorMessage } = this.state
         const { updateShelf, shelfBooks } = this.props
         console.log(searchResult)
         return (
@@ -69,6 +71,8 @@ class SearchPage extends Component {
                     />
                 </div>
                 <div className='search-books-results'>
+                    {query.length !== 0 && searchResult.length === 0 &&
+                    (<span>{errorMessage}</span>)}                  
                     <Book 
                         shelfBooks={shelfBooks}
                         books={query ? searchResult : []}
