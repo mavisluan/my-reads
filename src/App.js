@@ -8,7 +8,6 @@ import { Route, Switch } from 'react-router-dom'
 class App extends Component {
   state = {
     books: [],
-    searchResult: []
 }
 
 componentDidMount () {
@@ -30,38 +29,9 @@ updateShelf = (book, shelf) => {
     })
 }
 
-updateSearchResult = (data) => {
-  const {books} = this.state
-  let result=[]
-    data.forEach(book => {
-      books.forEach(b => {
-        if (book.id === b.id) {
-          book = b 
-        }
-      })
-      result.push(book)
-    })
-    this.setState({
-      searchResult: result
-    })
-}
-
-handleSearchResult = (query) => {
-  BooksAPI.search(query).then(data => {
-    console.log('no error')
-    this.updateSearchResult(data)
-  }).catch((e) => {
-      console.log('error', e)
-      this.setState({ 
-        searchResult: []
-      })
-  })
-}
-
   render() {
-    const { books, searchResult } = this.state
+    const { books } = this.state
     console.log(books)
-    console.log(searchResult)
     return (
       <div className="App">
         <Switch>
@@ -71,13 +41,11 @@ handleSearchResult = (query) => {
               updateShelf={this.updateShelf}
             />
           )}/>
-          <Route path='/search' render={({history}) => (
+          <Route path='/search' render={() => (
             <SearchPage 
-              books={searchResult}
-              onSearch={this.handleSearchResult}
+              shelfBooks={books}
               updateShelf={(book, shelf) => {
                 this.updateShelf(book, shelf)
-                history.push('/')
               }}
             />
           )}/>
