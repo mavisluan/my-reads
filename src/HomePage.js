@@ -1,10 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import BookShelf from './BookShelf'
 import { Link } from 'react-router-dom'
 
-class HomePage extends Component {
-    render () {
-        const { books, updateShelf } = this.props
+const HomePage = (props) => {
+        const { books, updateShelf } = props
         return (
             <div>
                 <div className='list-books-title'>
@@ -35,7 +34,6 @@ class HomePage extends Component {
                 </div>             
             </div>
         )
-    }
 }
 
 export default HomePage

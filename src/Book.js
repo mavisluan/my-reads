@@ -9,9 +9,10 @@ const Book = (props) => (
                         <div className='book-top'>
                             <img
                             style={{height: '200px'}}
-                            src={(book.imageLinks === undefined) ?
-                                `https://vignette.wikia.nocookie.net/bakemonogatari1645/images/2/26/No-cover-placeholder.png/revision/latest?cb=20171227065818`:
-                                `${book.imageLinks.thumbnail}`
+                            src={
+                                (book.imageLinks === undefined) 
+                                ? `https://vignette.wikia.nocookie.net/bakemonogatari1645/images/2/26/No-cover-placeholder.png/revision/latest?cb=20171227065818`
+                                : `${book.imageLinks.thumbnail}`
                             } 
                             alt={`BookInfo`}
                             />
@@ -30,8 +31,8 @@ const Book = (props) => (
                             </div> 
                         </div>
                         <div> 
-                            <p className='book-title'>{(book.title === undefined ? `unknown author` : book.title)}</p>
-                            <p className='book-authors'>{book.authors}</p>    
+                            <p className='book-title'>{book.title}</p>
+                            <p className='book-authors'>{(book.authors === undefined ? `unknown author`: book.authors)}</p>    
                         </div>                  
                     </div>                  
                 </li>

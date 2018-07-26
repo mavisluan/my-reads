@@ -7,14 +7,12 @@ import { Route, Switch } from 'react-router-dom'
 
 class App extends Component {
   state = {
-    books: [],
+    books: []
 }
 
 componentDidMount () {
     BooksAPI.getAll().then((books) => (
-        this.setState({
-            books: books
-        })
+        this.setState({books: books})
     ))    
 }
 
