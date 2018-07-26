@@ -44,9 +44,7 @@ updateShelf = (book, shelf) => {
           <Route path='/search' render={() => (
             <SearchPage 
               shelfBooks={books}
-              updateShelf={(book, shelf) => {
-                this.updateShelf(book, shelf)
-              }}
+              updateShelf={this.updateShelf}
             />
           )}/>
         </Switch>
