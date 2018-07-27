@@ -10,22 +10,28 @@ class App extends Component {
     books: []
 }
 
+// make AJAX requests in componentDidMount to avoid it resolves before the component mount 
 componentDidMount () {
     BooksAPI.getAll().then((books) => (
         this.setState({books: books})
     ))    
 }
 
-updateShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf).then((shelf) => {
-        book.shelf = shelf       
-        BooksAPI.getAll().then((books) => (
-            this.setState({
-                books: books 
-            })
-        ))
-    })
-}
+updateShelf = (bookToMove, shelfSelected) => {
+  // use the former state to update the new state
+  this.setState((state) => {
+    //filter the books that are not moved into a new array 'booksNotMoved'
+      const booksNotMoved= state.books.filter(book => book.id !== bookToMove.id);
+    //update the backend info or the bookToMove
+      BooksAPI.update(bookToMove, shelfSelected);
+    //update the local bookToMove's shelf to be shelfSelected
+      bookToMove.shelf = shelfSelected
+      return {
+    //combine the booksNotMoved with bootToMove with 'concat' and set the state value
+        books: booksNotMoved.concat(bookToMove)
+      }
+  });
+};
 
   render() {
     const { books } = this.state

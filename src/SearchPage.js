@@ -6,52 +6,34 @@ import * as BooksAPI from './BooksAPI'
 class SearchPage extends Component {
     state = {
         query: '',
-        searchResult: [],
+        result: [],
         errorMessage: ''
     }
     
-    componentDidUpdate(prevProps) {
-        if (this.props.books !== prevProps.books) {
-            this.updateSearchResult(this.state.searchResult)
-        }
-    }
-
     updateQuery = (query) => {
         this.setState({ query: query})   
-
         if (query) {
-            this.handleSearchResult(query)
+            BooksAPI.search(query).then(result => {
+                result.map(book => (
+                    this.props.books.forEach(b => (
+                     (book.id === b.id) 
+                     ? book.shelf = b.shelf
+                     : book
+                    ))
+                 ))
+                 this.setState({result})
+            }).catch((e) => {
+                  this.setState({ 
+                    result: [],
+                    errorMessage: 'No result'
+                  })
+            })        
         }
     }
 
-    updateSearchResult = (data) => {
-        const {books} = this.props
-        data.map(book => (
-           books.forEach(b => (
-            (book.id === b.id) 
-            ? book.shelf = b.shelf
-            : book
-           ))
-        ))
-        this.setState({ searchResult: data})
-      }
-      
-      handleSearchResult = (query) => {
-        BooksAPI.search(query).then(data => {
-          this.updateSearchResult(data)
-        }).catch((e) => {
-            this.setState({ 
-              searchResult: [],
-              errorMessage: 'No result'
-            })
-        })
-      }
-    
 
     render () {
-        const { query, searchResult, errorMessage } = this.state
-        console.log(searchResult)
-
+        const { query, result, errorMessage } = this.state
         const { updateShelf } = this.props
         return (
             <div>
@@ -67,10 +49,10 @@ class SearchPage extends Component {
                     />
                 </div>
                 <div className='search-books-results'>
-                    {query.length !== 0 && searchResult.length === 0 &&
+                    {query.length !== 0 && result.length === 0 &&
                     (<span>{errorMessage}</span>)}                  
                     <Book 
-                        books={query ? searchResult : []}
+                        books={query ? result : []}
                         onMoveShelf={updateShelf}
                     />
                 </div>
