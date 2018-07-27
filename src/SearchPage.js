@@ -26,26 +26,20 @@ class SearchPage extends Component {
 
     updateSearchResult = (data) => {
         const {books} = this.props
-        let result=[]
-          data.forEach(book => {
-            books.forEach(b => {
-              if (book.id === b.id) {
-                book = b 
-              }
-            })
-            result.push(book)
-          })
-          this.setState({
-            searchResult: result
-          })
+        data.map(book => (
+           books.forEach(b => (
+            (book.id === b.id) 
+            ? book.shelf = b.shelf
+            : book
+           ))
+        ))
+        this.setState({ searchResult: data})
       }
       
       handleSearchResult = (query) => {
         BooksAPI.search(query).then(data => {
-          console.log('no error')
           this.updateSearchResult(data)
         }).catch((e) => {
-            console.log('error', e)
             this.setState({ 
               searchResult: [],
               errorMessage: 'No result'
@@ -56,8 +50,9 @@ class SearchPage extends Component {
 
     render () {
         const { query, searchResult, errorMessage } = this.state
-        const { updateShelf } = this.props
         console.log(searchResult)
+
+        const { updateShelf } = this.props
         return (
             <div>
                 <div className='search-books-bar '>
