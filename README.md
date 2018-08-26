@@ -15,6 +15,11 @@ Every book has a drop-down list of shelves, which allows you to select and move 
 The SearchPage allows you to search books by name or author. 
 
 
+# Project Screenshots
+![](src/icons/homepage.png )
+![](src/icons/searchpage.png)
+
+
 ## Instructions for installment
 
 * clone my repo `https://github.com/mavisluan/MyReads`
