@@ -23,16 +23,6 @@ ReadPage
 SearchPage
 ![](src/icons/search-page.png)
 ![](src/icons/search-result.png)
-||||||| merged common ancestors
-![](src/icons/homepage.png )
-![](src/icons/searchpage.png)
-=======
-ReadPage
-![](src/icons/homepage.png )
-
-SearchPage
-![](src/icons/searchpage.png)
->>>>>>> 12d720053b62e68b122eb50228cd590a7bb9db3e
 
 
 ## Instructions for installment
