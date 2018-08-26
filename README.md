@@ -16,7 +16,6 @@ The SearchPage allows you to search books by name or author.
 
 
 # Project Screenshots
-<<<<<<< HEAD
 ReadPage
 ![](src/icons/read-page.png )
 
