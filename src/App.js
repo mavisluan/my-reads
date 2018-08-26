@@ -35,7 +35,6 @@ updateShelf = (bookToMove, shelfSelected) => {
 
   render() {
     const { books } = this.state
-    console.log(books)
     return (
       <div className="App">
         <Switch>
