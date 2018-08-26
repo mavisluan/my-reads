@@ -20,7 +20,6 @@ ReadPage
 ![](src/icons/read-page.png )
 
 SearchPage
-![](src/icons/search-page.png)
 ![](src/icons/search-result.png)
 
 
