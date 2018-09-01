@@ -25,7 +25,7 @@ The SearchPage allows you to search books by name or author.
 
 ## Instructions for installment
 
-* clone my repo `https://github.com/mavisluan/MyReads`
+* clone my repo `https://github.com/mavisluan/my-reads`
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 
