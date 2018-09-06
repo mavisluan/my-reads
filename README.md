@@ -1,9 +1,10 @@
 # MyReads Project
 
-MyReads Project is a bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read. It is built with [Create React App](https://github.com/facebookincubator/create-react-app).
+MyReads Project is a bookshelf app, built with ReactJS. 
+It allows you to select and categorize books you have read, are currently reading, or want to read. It is built with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 
-# App Functionsbookshelves
+# App Functionality
 The ReadsPage displays three shelves.
 
 1. Currently reading
@@ -23,7 +24,7 @@ The SearchPage allows you to search books by name or author.
 ![](src/icons/search-result.png)
 
 
-## Instructions for installment
+## Installation Instructions
 
 * clone my repo `https://github.com/mavisluan/my-reads.git`
 * install all project dependencies with `npm install`
